@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInUp
+import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -53,7 +53,6 @@ fun ChatScreen(viewModel: ChatViewModel = viewModel()) {
     val listState = rememberLazyListState()
     val scope = rememberCoroutineScope()
 
-    // تمرير تلقائي إلى آخر رسالة
     LaunchedEffect(messages.size) {
         if (messages.isNotEmpty()) {
             scope.launch {
@@ -67,7 +66,6 @@ fun ChatScreen(viewModel: ChatViewModel = viewModel()) {
             .fillMaxSize()
             .background(Color(0xFFF5F5F5))
     ) {
-        // Header
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
@@ -102,7 +100,6 @@ fun ChatScreen(viewModel: ChatViewModel = viewModel()) {
             }
         }
 
-        // Messages
         LazyColumn(
             modifier = Modifier
                 .weight(1f)
@@ -116,7 +113,6 @@ fun ChatScreen(viewModel: ChatViewModel = viewModel()) {
                 ChatBubble(message)
             }
 
-            // Loading indicator
             if (isLoading) {
                 item {
                     LoadingBubble()
@@ -124,7 +120,6 @@ fun ChatScreen(viewModel: ChatViewModel = viewModel()) {
             }
         }
 
-        // Input Area
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
@@ -186,7 +181,7 @@ fun ChatBubble(message: String) {
 
     AnimatedVisibility(
         visible = true,
-        enter = slideInUp() + fadeIn(),
+        enter = slideInVertically(initialOffsetY = { it / 2 }) + fadeIn(),
         exit = fadeOut()
     ) {
         Row(
