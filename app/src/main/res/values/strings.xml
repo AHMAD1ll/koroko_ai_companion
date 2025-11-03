@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">كوروكو</string>
+    <string name="character_name">كوروكو</string>
+    <string name="input_hint">اكتب رسالتك...</string>
+    <string name="send_button">إرسال</string>
+    <string name="loading">جاري التحميل...</string>
+    <string name="error_message">آسفة، حدث خطأ ما. حاولي لاحقاً...</string>
+    <string name="welcome_message">مرحباً! أنا كوروكو. كيف حالك؟</string>
+</resources>
